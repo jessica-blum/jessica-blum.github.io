@@ -22,11 +22,6 @@
 
 
 
-
-<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
-
-
-
 <link rel="stylesheet" href="/css/fonts.css" media="all">
 <link rel="stylesheet" href="/css/main.css" media="all">
 
@@ -62,7 +57,7 @@
 
   <article class="article">
     
-    <span class="article-duration">15 min read</span>
+    <span class="article-duration">13 min read</span>
     
 
     <h1 class="article-title">Dogs in the Dawghouse</h1>
@@ -75,30 +70,6 @@
       
 
 
-<pre><code>## # A tibble: 38 × 4
-##    variable                    type    role      source  
-##    &lt;chr&gt;                       &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   
-##  1 game_id                     numeric ID        original
-##  2 game_date                   date    ID        original
-##  3 team_short_display_name     nominal ID        original
-##  4 opponent_short_display_name nominal ID        original
-##  5 season                      numeric ID        original
-##  6 team_rolling_orb            numeric predictor original
-##  7 team_rolling_drb            numeric predictor original
-##  8 opponent_rolling_orb        numeric predictor original
-##  9 opponent_rolling_drb        numeric predictor original
-## 10 team_cumulative_o_eff       numeric predictor original
-## # … with 28 more rows</code></pre>
-<pre><code>## # A tibble: 2 × 3
-##   .metric  .estimator .estimate
-##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.748
-## 2 kap      binary         0.497</code></pre>
-<pre><code>## # A tibble: 2 × 3
-##   .metric  .estimator .estimate
-##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.740
-## 2 kap      binary         0.480</code></pre>
 <p>If you couldn’t already tell, Gonzaga was not the champion of the NCAA March Madness Tournament this year. If they were, this would be more of a joyful piece in which you could take what I did and maybe recreate it for yourself.</p>
 <p>However, I would advise that only bits and pieces of work may be worth taking up in future work. I did end up in the top 85th percentile with my bracket, the best out of the eight brackets I produced through ESPN for this year’s slate of games.</p>
 <p>In all honesty, I watch basketball, I love reporting and talking about the numbers, but I have never cared for basketball in a way that I have thought about what makes a team a team, what statistics are going to tell the story of two teams coming into a game in the tournament and will tell me that this team will win. Good basketball teams to me are creating turnovers AND are getting points off of those turnovers. Good basketball teams are out-rebounding the other team, specifically on offense if they can. Good basketball teams are making about a third of their three-point attempts, if not more.</p>
@@ -605,51 +576,6 @@
 <div id="the-west" class="section level2">
 <h2>THE WEST</h2>
 <p>The round of 64 games started off well in the West Region. There were two games that my model incorrectly predicted: Boise State and Alabama. There was only one upset that my model predicted, but it did get it right with #12 New Mexico State taking home the victory over #5 UConn, 70-63.</p>
-<pre class="r"><code>round1west %&gt;% 
-  select(team_short_display_name, .pred_class, .pred_W, opponent_short_display_name) %&gt;%
-  gt() %&gt;% 
-  cols_label(
-    team_short_display_name = &quot;Team&quot;,
-    .pred_class = &quot;Prediction&quot;,
-    .pred_W = &quot;Win Confidence&quot;,
-    opponent_short_display_name = &quot;Opponent&quot;
-  ) %&gt;%
-  tab_header(
-    title = &quot;West Regional: Round 1&quot;,
-    subtitle = &quot;Alabama was the real disappointment here.&quot;
-  ) %&gt;%  
-  tab_source_note(
-    source_note = md(&quot;**By:** Jessica Blum&quot;)
-  ) %&gt;% 
-  tab_style(
-    style = cell_text(color = &quot;black&quot;, weight = &quot;bold&quot;, align = &quot;left&quot;),
-    locations = cells_title(&quot;title&quot;)
-  ) %&gt;% 
-  tab_style(
-    style = cell_text(color = &quot;black&quot;, align = &quot;left&quot;),
-    locations = cells_title(&quot;subtitle&quot;)
-  ) %&gt;%
-  tab_style(
-     locations = cells_column_labels(columns = everything()),
-     style = list(
-       cell_borders(sides = &quot;bottom&quot;, weight = px(3)),
-       cell_text(weight = &quot;bold&quot;, size=12)
-     )
-   ) %&gt;%
-  opt_row_striping() %&gt;% 
-  opt_table_lines(&quot;none&quot;) %&gt;%
-    fmt_percent(
-    columns = c(.pred_W),
-    decimals = 1
-  ) %&gt;%
-  tab_style(
-    style = list(
-      cell_fill(color = &quot;red&quot;),
-      cell_text(color = &quot;white&quot;)
-      ),
-    locations = cells_body(
-      rows = team_short_display_name == &quot;Alabama&quot;)
-  )</code></pre>
 <div id="unaexnatxh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -1077,8 +1003,8 @@
 <td class="gt_row gt_left">Georgia State</td></tr>
     <tr><td class="gt_row gt_left gt_striped" style="background-color: #FF0000; color: #FFFFFF;">Alabama</td>
 <td class="gt_row gt_center gt_striped" style="background-color: #FF0000; color: #FFFFFF;">W</td>
-<td class="gt_row gt_right gt_striped" style="background-color: #FF0000; color: #FFFFFF;">64.9%</td>
-<td class="gt_row gt_left gt_striped" style="background-color: #FF0000; color: #FFFFFF;">Rutgers</td></tr>
+<td class="gt_row gt_right gt_striped" style="background-color: #FF0000; color: #FFFFFF;">62.6%</td>
+<td class="gt_row gt_left gt_striped" style="background-color: #FF0000; color: #FFFFFF;">Notre Dame</td></tr>
     <tr><td class="gt_row gt_left">Arkansas</td>
 <td class="gt_row gt_center">W</td>
 <td class="gt_row gt_right">90.4%</td>
@@ -1122,7 +1048,7 @@
 </div>
 <p>Alabama was the one major disappointment from this round of games. The two games that ended up being incorrect though were ones that my model was the most unsure about. Alabama had just a 62 percent chance of winning. In terms of one problem Alabama faced in that game, their offensive efficiency was poor at 88.9 compared to their season cumulative of approximately 108.7. That stat represents how a team produces out of 100 possessions, and Notre Dame was outscoring especially in the second half. Another reason was that Alabama was shooting 33 percent from beyond the arc, connecting on 8 of 24 shots. Notre Dame shot 62 percent in terms of 3-pointers, making 10 of 16.</p>
 <p>Other than those two missed predictions for the round of 64, the round of 32 went swimmingly. My model predicted no upsets, which was dangerous, but it turned out.</p>
-<p>The Sweet 16 is where success eluded me. Within this region, my championship team (Gonzaga) lost by six points to Arkansas and Texas Tech failed to boot Coach K from the tournament.</p>
+<p>The Sweet 16 is where success eluded me. Within this region, my championship team (Gonzaga) lost by six points to Arkansas, and Texas Tech failed to boot Coach K from the tournament.</p>
 <p>Past this round, my model only predicted three of the eight teams to make it to the Elite 8. None of those teams were in the West Region.</p>
 </div>
 <div id="the-south" class="section level2">
@@ -1134,7 +1060,7 @@
 <div id="the-midwest" class="section level2">
 <h2>THE MIDWEST</h2>
 <p>The final four teams this year were Duke, North Carolina, Villanova and Kansas. Two second seeded teams, an eight seed, and a top seed. Since my model wasn’t one for upsets, I predicted all of the top seeds to go to the Final Four. Kansas was the only one to hold up for me, so Rock Chalk and all of that.</p>
-<p>Once all the potential points were added up and no more were left to be claimed, my final position was……. second.</p>
+<p>Once all the potential points were added up and no more were left to be claimed, my final position was… second.</p>
 <p>If I were to have continued my work and had more time, I would have tried to incorporate more outside factors than the stats recorded between buzzers. The few things I can think of that would have mattered going into the game include previous tournament experience among players on a team, injuries and a bench factor that looked into who a team may have had coming off of the bench to contribute.</p>
 <p>All is well that ends well, and I will take a second-place finish and Coach K not seeing the light of day in the championship game.</p>
 </div>
@@ -1160,18 +1086,6 @@
 
     </div>
     
-
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
-<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
-
-
 
     
 

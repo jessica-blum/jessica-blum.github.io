@@ -13,7 +13,8 @@
       <pubDate>Wed, 30 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>http://jessicablum.github.io/2022/03/30/dogs-in-the-dawghouse/</guid>
-      <description>## # A tibble: 38 × 4 ## variable type role source ## &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; ## 1 game_id numeric ID original ## 2 game_date date ID original ## 3 team_short_display_name nominal ID original ## 4 opponent_short_display_name nominal ID original ## 5 season numeric ID original ## 6 team_rolling_orb numeric predictor original ## 7 team_rolling_drb numeric predictor original ## 8 opponent_rolling_orb numeric predictor original ## 9 opponent_rolling_drb numeric predictor original ## 10 team_cumulative_o_eff numeric predictor original ## # … with 28 more rows ## # A tibble: 2 × 3 ## .</description>
+      <description>If you couldn’t already tell, Gonzaga was not the champion of the NCAA March Madness Tournament this year. If they were, this would be more of a joyful piece in which you could take what I did and maybe recreate it for yourself.
+However, I would advise that only bits and pieces of work may be worth taking up in future work. I did end up in the top 85th percentile with my bracket, the best out of the eight brackets I produced through ESPN for this year’s slate of games.</description>
     </item>
     
     <item>
