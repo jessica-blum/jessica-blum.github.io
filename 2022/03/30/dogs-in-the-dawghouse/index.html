@@ -22,6 +22,11 @@
 
 
 
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
 <link rel="stylesheet" href="/css/fonts.css" media="all">
 <link rel="stylesheet" href="/css/main.css" media="all">
 
@@ -57,7 +62,7 @@
 
   <article class="article">
     
-    <span class="article-duration">1 min read</span>
+    <span class="article-duration">13 min read</span>
     
 
     <h1 class="article-title">Dogs in the Dawghouse</h1>
@@ -70,7 +75,1052 @@
       
 
 
-<p>Here is where the fun begins of writing out my blog post, talking where it went right and where it may have gone really wrong.</p>
+<pre><code>## # A tibble: 38 × 4
+##    variable                    type    role      source  
+##    &lt;chr&gt;                       &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   
+##  1 game_id                     numeric ID        original
+##  2 game_date                   date    ID        original
+##  3 team_short_display_name     nominal ID        original
+##  4 opponent_short_display_name nominal ID        original
+##  5 season                      numeric ID        original
+##  6 team_rolling_orb            numeric predictor original
+##  7 team_rolling_drb            numeric predictor original
+##  8 opponent_rolling_orb        numeric predictor original
+##  9 opponent_rolling_drb        numeric predictor original
+## 10 team_cumulative_o_eff       numeric predictor original
+## # … with 28 more rows</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.748
+## 2 kap      binary         0.497</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.740
+## 2 kap      binary         0.480</code></pre>
+<p>If you couldn’t already tell, Gonzaga was not the champion of the NCAA March Madness Tournament this year. If they were, this would be more of a joyful piece in which you could take what I did and maybe recreate it for yourself.</p>
+<p>However, I would advise that only bits and pieces of work may be worth taking up in future work. I did end up in the top 85th percentile with my bracket, the best out of the eight brackets I produced through ESPN for this year’s slate of games.</p>
+<p>In all honesty, I watch basketball, I love reporting and talking about the numbers, but I have never cared for basketball in a way that I have thought about what makes a team a team, what statistics are going to tell the story of two teams coming into a game in the tournament and will tell me that this team will win. Good basketball teams to me are creating turnovers AND are getting points off of those turnovers. Good basketball teams are out-rebounding the other team, specifically on offense if they can. Good basketball teams are making about a third of their three-point attempts, if not more.</p>
+<p>To me, I find myself wanting to chase after a really decent accuracy. My goal is to reach somewhere in the 80 percent range. If my accuracy is that high, I am more likely to get more than 3 out of 4 games right. Who doesn’t want a successful bracket? I will live and die by a model that could get me 80 percent and not be overfit/too correlated. So, I set out to try various combinations of statistics to find the best predictors from what I can work with.</p>
+<p>At first, I was trying three different machine learning tools, seeing where one may beat out the others. What I came to find after about four to five runs of different predictors was that logistic regression always, for me, out-performed support vector machines and random forest with accuracy, and it took less time to run and get results. That was a win-win situation in my eyes, so I could focus on the combinations, such as with the predictors and rolling windows, in order to get more predictive power.</p>
+<p>I also took more time to experiment with rolling vs. cumulative statistics which did not vary much from each other from what we did in class, but what if some predictors were cumulative, and some were rolling? What if the size of the window changes for each predictor? I set out wanting to answer these questions, but it could be a tall task. What I found was there were only slightly better results with a rolling vs. cumulative statistic oF, for example, offensive efficiency. In the end, I made most of my variables rolling and chose different window sizes that I thought would help tell the story. If a metric would see little variation game to game, like free throw factor, I kept the rolling window to 10, but if I saw more variation game to game, I wanted to keep the window smaller. In that case, I chose a smaller rolling window of about 3 games with metrics like rolling steals or blocks or true shooting percentage.</p>
+<p>My thought process in thinking about just straight up adding like three-point shots made is that that one number from a game is not very indicative of what the team may do in the next game. Hence, that’s why rolling metrics are supposed to be predictive because they average the past few games together to try to be more helpful in predicting the next game. So, in thinking that, I removed all the stats from above that were not rolling and that were not KenPom data (I can’t roll KenPom data) and made them into rolling metrics which gave me a more modest model.</p>
+<p>Overall, I ended up with 32 predictors.</p>
+<div id="ezanwudcgb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#ezanwudcgb .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: none;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ezanwudcgb .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ezanwudcgb .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ezanwudcgb .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ezanwudcgb .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ezanwudcgb .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ezanwudcgb .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ezanwudcgb .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ezanwudcgb .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ezanwudcgb .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ezanwudcgb .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ezanwudcgb .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ezanwudcgb .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ezanwudcgb .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ezanwudcgb .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ezanwudcgb .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ezanwudcgb .gt_first_summary_row {
+  border-top-style: none;
+  border-top-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ezanwudcgb .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ezanwudcgb .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: none;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ezanwudcgb .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ezanwudcgb .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ezanwudcgb .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ezanwudcgb .gt_left {
+  text-align: left;
+}
+
+#ezanwudcgb .gt_center {
+  text-align: center;
+}
+
+#ezanwudcgb .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ezanwudcgb .gt_font_normal {
+  font-weight: normal;
+}
+
+#ezanwudcgb .gt_font_bold {
+  font-weight: bold;
+}
+
+#ezanwudcgb .gt_font_italic {
+  font-style: italic;
+}
+
+#ezanwudcgb .gt_super {
+  font-size: 65%;
+}
+
+#ezanwudcgb .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#ezanwudcgb .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ezanwudcgb .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#ezanwudcgb .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#ezanwudcgb .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="2" class="gt_heading gt_title gt_font_normal" style="color: #000000; text-align: left; font-weight: bold;">My 32 predictors</th>
+    </tr>
+    <tr>
+      <th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="color: #000000; text-align: left;">Rolling metrics were chosen over cumulative</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">variable</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">role</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">team_rolling_orb</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_drb</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_orb</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">opponent_rolling_drb</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">team_cumulative_o_eff</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_cumulative_d_eff</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_cumulative_o_eff</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">opponent_cumulative_d_eff</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">team_adj_em</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">opponent_adj_em</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">team_sos</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">opponent_sos</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">team_ncsos</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">opponent_ncsos</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_three_point_field_goal_pct</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_three_point_field_goal_pct</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_true_shooting_percentage</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_true_shooting_percentage</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_cumulative_mean_turnover_percentage</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_cumulative_mean_turnover_percentage</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_assist</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_assist</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_block</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_block</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_steal</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_steal</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_possessions</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_possessions</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_luck</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_luck</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_free_throw_attempt_rate</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_free_throw_attempt_rate</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">TeamResult</td>
+<td class="gt_row gt_left">outcome</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="2"><strong>By:</strong> Jessica Blum</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+<p>The results of my work got me far compared to my classmates by the final game.</p>
+<div id="the-west" class="section level2">
+<h2>THE WEST</h2>
+<p>The round of 64 games started off well in the West Region. There were two games that my model incorrectly predicted: Boise State and Alabama. There was only one upset that my model predicted, but it did get it right with #12 New Mexico State taking home the victory over #5 UConn, 70-63.</p>
+<pre class="r"><code>round1west %&gt;% 
+  select(team_short_display_name, .pred_class, .pred_W, opponent_short_display_name) %&gt;%
+  gt() %&gt;% 
+  cols_label(
+    team_short_display_name = &quot;Team&quot;,
+    .pred_class = &quot;Prediction&quot;,
+    .pred_W = &quot;Win Confidence&quot;,
+    opponent_short_display_name = &quot;Opponent&quot;
+  ) %&gt;%
+  tab_header(
+    title = &quot;West Regional: Round 1&quot;,
+    subtitle = &quot;Alabama was the real disappointment here.&quot;
+  ) %&gt;%  
+  tab_source_note(
+    source_note = md(&quot;**By:** Jessica Blum&quot;)
+  ) %&gt;% 
+  tab_style(
+    style = cell_text(color = &quot;black&quot;, weight = &quot;bold&quot;, align = &quot;left&quot;),
+    locations = cells_title(&quot;title&quot;)
+  ) %&gt;% 
+  tab_style(
+    style = cell_text(color = &quot;black&quot;, align = &quot;left&quot;),
+    locations = cells_title(&quot;subtitle&quot;)
+  ) %&gt;%
+  tab_style(
+     locations = cells_column_labels(columns = everything()),
+     style = list(
+       cell_borders(sides = &quot;bottom&quot;, weight = px(3)),
+       cell_text(weight = &quot;bold&quot;, size=12)
+     )
+   ) %&gt;%
+  opt_row_striping() %&gt;% 
+  opt_table_lines(&quot;none&quot;) %&gt;%
+    fmt_percent(
+    columns = c(.pred_W),
+    decimals = 1
+  ) %&gt;%
+  tab_style(
+    style = list(
+      cell_fill(color = &quot;red&quot;),
+      cell_text(color = &quot;white&quot;)
+      ),
+    locations = cells_body(
+      rows = team_short_display_name == &quot;Alabama&quot;)
+  )</code></pre>
+<div id="unaexnatxh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#unaexnatxh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: none;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#unaexnatxh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#unaexnatxh .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#unaexnatxh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#unaexnatxh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#unaexnatxh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#unaexnatxh .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#unaexnatxh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#unaexnatxh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#unaexnatxh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#unaexnatxh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#unaexnatxh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#unaexnatxh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#unaexnatxh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#unaexnatxh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#unaexnatxh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#unaexnatxh .gt_first_summary_row {
+  border-top-style: none;
+  border-top-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#unaexnatxh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#unaexnatxh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: none;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#unaexnatxh .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#unaexnatxh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#unaexnatxh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#unaexnatxh .gt_left {
+  text-align: left;
+}
+
+#unaexnatxh .gt_center {
+  text-align: center;
+}
+
+#unaexnatxh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#unaexnatxh .gt_font_normal {
+  font-weight: normal;
+}
+
+#unaexnatxh .gt_font_bold {
+  font-weight: bold;
+}
+
+#unaexnatxh .gt_font_italic {
+  font-style: italic;
+}
+
+#unaexnatxh .gt_super {
+  font-size: 65%;
+}
+
+#unaexnatxh .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#unaexnatxh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#unaexnatxh .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#unaexnatxh .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#unaexnatxh .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal" style="color: #000000; text-align: left; font-weight: bold;">West Regional: Round 1</th>
+    </tr>
+    <tr>
+      <th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="color: #000000; text-align: left;">Alabama was the real disappointment here.</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">Team</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">Prediction</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">Win Confidence</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">Opponent</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">Gonzaga</td>
+<td class="gt_row gt_center">W</td>
+<td class="gt_row gt_right">98.4%</td>
+<td class="gt_row gt_left">Georgia State</td></tr>
+    <tr><td class="gt_row gt_left gt_striped" style="background-color: #FF0000; color: #FFFFFF;">Alabama</td>
+<td class="gt_row gt_center gt_striped" style="background-color: #FF0000; color: #FFFFFF;">W</td>
+<td class="gt_row gt_right gt_striped" style="background-color: #FF0000; color: #FFFFFF;">64.9%</td>
+<td class="gt_row gt_left gt_striped" style="background-color: #FF0000; color: #FFFFFF;">Rutgers</td></tr>
+    <tr><td class="gt_row gt_left">Arkansas</td>
+<td class="gt_row gt_center">W</td>
+<td class="gt_row gt_right">90.4%</td>
+<td class="gt_row gt_left">Vermont</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">Texas Tech</td>
+<td class="gt_row gt_center gt_striped">W</td>
+<td class="gt_row gt_right gt_striped">97.7%</td>
+<td class="gt_row gt_left gt_striped">Montana State</td></tr>
+    <tr><td class="gt_row gt_left">Texas Tech</td>
+<td class="gt_row gt_center">W</td>
+<td class="gt_row gt_right">97.2%</td>
+<td class="gt_row gt_left">Montana State</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">C Connecticut</td>
+<td class="gt_row gt_center gt_striped">L</td>
+<td class="gt_row gt_right gt_striped">2.3%</td>
+<td class="gt_row gt_left gt_striped">New Mexico St</td></tr>
+    <tr><td class="gt_row gt_left">Michigan State</td>
+<td class="gt_row gt_center">W</td>
+<td class="gt_row gt_right">66.1%</td>
+<td class="gt_row gt_left">Davidson</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">Duke</td>
+<td class="gt_row gt_center gt_striped">W</td>
+<td class="gt_row gt_right gt_striped">97.3%</td>
+<td class="gt_row gt_left gt_striped">CSU Fullerton</td></tr>
+    <tr><td class="gt_row gt_left">Boise State</td>
+<td class="gt_row gt_center">W</td>
+<td class="gt_row gt_right">55.2%</td>
+<td class="gt_row gt_left">Memphis</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">Boise State</td>
+<td class="gt_row gt_center gt_striped">W</td>
+<td class="gt_row gt_right gt_striped">53.2%</td>
+<td class="gt_row gt_left gt_striped">Memphis</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4"><strong>By:</strong> Jessica Blum</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
 
     </div>
   </article>
@@ -93,6 +1143,18 @@
 
     </div>
     
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
 
     
 
