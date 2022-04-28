@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on Jessica Blum&#39;s GitHub Site</title>
-    <link>http://jessicablum.github.io/tags/r/</link>
-    <description>Recent content in R on Jessica Blum&#39;s GitHub Site</description>
+    <title>NBA on Jessica Blum&#39;s GitHub Site</title>
+    <link>http://jessicablum.github.io/tags/nba/</link>
+    <description>Recent content in NBA on Jessica Blum&#39;s GitHub Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://jessicablum.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://jessicablum.github.io/tags/nba/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NBA Gambling Woes</title>
       <link>http://jessicablum.github.io/2022/04/28/nba-gambling-woes/</link>
@@ -14,17 +14,6 @@
       
       <guid>http://jessicablum.github.io/2022/04/28/nba-gambling-woes/</guid>
       <description>## # A tibble: 25 × 4 ## variable type role source ## &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; ## 1 game_id numeric ID original ## 2 game_date date ID original ## 3 team_short_display_name nominal ID original ## 4 opponent_short_display_name nominal ID original ## 5 season numeric ID original ## 6 opponent_rolling_o_eff numeric predictor original ## 7 opponent_rolling_d_eff numeric predictor original ## 8 opponent_rolling_true_shooting_percentage numeric predictor original ## 9 opponent_nrtg numeric predictor original ## 10 opponent_rolling_orb numeric predictor original ## # … with 15 more rows ## # A tibble: 2 × 3 ## .</description>
-    </item>
-    
-    <item>
-      <title>Dogs in the Dawghouse</title>
-      <link>http://jessicablum.github.io/2022/03/30/dogs-in-the-dawghouse/</link>
-      <pubDate>Wed, 30 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>http://jessicablum.github.io/2022/03/30/dogs-in-the-dawghouse/</guid>
-      <description>Gonzaga left the tournament with tails stuch between their hind legs.
- If you couldn’t already tell, Gonzaga was not the champion of the NCAA March Madness Tournament this year. If they were, this would be more of a joyful piece in which you could take what I did and maybe recreate it for yourself.
-However, I would advise that only bits and pieces of work may be worth taking up in future work.</description>
     </item>
     
   </channel>

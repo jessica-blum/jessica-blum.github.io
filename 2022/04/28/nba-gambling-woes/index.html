@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.96.0" />
+
+
+<title>NBA Gambling Woes - Jessica Blum&#39;s GitHub Site</title>
+<meta property="og:title" content="NBA Gambling Woes - Jessica Blum&#39;s GitHub Site">
+
+
+  <link href='http://jessicablum.github.io/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/jessicablum">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/jessicablum">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">7 min read</span>
+    
+
+    <h1 class="article-title">NBA Gambling Woes</h1>
+
+    
+    <span class="article-date">2022-04-28</span>
+    
+
+    <div class="article-content">
+      
+
+
+<pre><code>## # A tibble: 25 × 4
+##    variable                                  type    role      source  
+##    &lt;chr&gt;                                     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   
+##  1 game_id                                   numeric ID        original
+##  2 game_date                                 date    ID        original
+##  3 team_short_display_name                   nominal ID        original
+##  4 opponent_short_display_name               nominal ID        original
+##  5 season                                    numeric ID        original
+##  6 opponent_rolling_o_eff                    numeric predictor original
+##  7 opponent_rolling_d_eff                    numeric predictor original
+##  8 opponent_rolling_true_shooting_percentage numeric predictor original
+##  9 opponent_nrtg                             numeric predictor original
+## 10 opponent_rolling_orb                      numeric predictor original
+## # … with 15 more rows</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.740
+## 2 kap      binary         0.480</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.732
+## 2 kap      binary         0.465</code></pre>
+<pre><code>## # A tibble: 3 × 7
+##   .pred_W .pred_L .pred_class home_team_displ… home_team_odds_… away_team_displ…
+##     &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;       &lt;chr&gt;                       &lt;int&gt; &lt;chr&gt;           
+## 1   0.614   0.386 W           Toronto Raptors               105 Philadelphia 76…
+## 2   0.146   0.854 L           Utah Jazz                    -110 Dallas Mavericks
+## 3   0.348   0.652 L           New Orleans Pel…              110 Phoenix Suns    
+## # … with 1 more variable: away_team_odds_money_line &lt;int&gt;</code></pre>
+<div class="figure">
+<img src="images/gonzaga.jpg" alt="" />
+<p class="caption">Here is where some chatter about a nice image would go.</p>
+</div>
+<p>There comes a time in one’s life that the lure of betting tempts the brain and gives one the feeling of accomplishment or entertainment. For some, that comes with turning of age and seeing others do it. For some, it can be the location of a vacation such as Las Vegas.</p>
+<p>For me, the lure never came. For me, I HAD to start betting because of a class in college.</p>
+<p>Sure, my spring break led me right into the jaws of Downtown Las Vegas, but at that time, I got satisfaction from watching everyone else blow their money as I strolled by without betting a penny. This semester, I have learned and thought about betting more than any other period in my life.</p>
+<p>My class in college was an advanced sports data class. The first half was spent building a model to predict the NCAA March Madness Tournament. Naturally, the second half’s purpose was to build a model to pull in NBA data and tie in moneyline odds.</p>
+<p>I worked with two other people, Brett and Collin, to build a model within a programming language called R. We used a sportsdataverse website and their hoopR package to manipulate up-to-date statistics on NBA teams and predict the outcome. Our professor set the starting wages at $1500. It was up to each group to try to make money long enough to stay afloat during the betting period. Each day had a minimum bet amount based on how many games were being played.</p>
+<div id="the-machine" class="section level1">
+<h1>The Machine</h1>
+<p>Digging deeper into our logic behind the model, we used a logistic regression model for this project. To us,</p>
+<p>##Explains your method. What did you use as features of your model? What algorithm did you use?</p>
+<div id="woriaenlqv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#woriaenlqv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: none;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#woriaenlqv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#woriaenlqv .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#woriaenlqv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#woriaenlqv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#woriaenlqv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#woriaenlqv .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#woriaenlqv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#woriaenlqv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#woriaenlqv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#woriaenlqv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#woriaenlqv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#woriaenlqv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#woriaenlqv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#woriaenlqv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#woriaenlqv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#woriaenlqv .gt_first_summary_row {
+  border-top-style: none;
+  border-top-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#woriaenlqv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#woriaenlqv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: none;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#woriaenlqv .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#woriaenlqv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#woriaenlqv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#woriaenlqv .gt_left {
+  text-align: left;
+}
+
+#woriaenlqv .gt_center {
+  text-align: center;
+}
+
+#woriaenlqv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#woriaenlqv .gt_font_normal {
+  font-weight: normal;
+}
+
+#woriaenlqv .gt_font_bold {
+  font-weight: bold;
+}
+
+#woriaenlqv .gt_font_italic {
+  font-style: italic;
+}
+
+#woriaenlqv .gt_super {
+  font-size: 65%;
+}
+
+#woriaenlqv .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#woriaenlqv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#woriaenlqv .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#woriaenlqv .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#woriaenlqv .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="2" class="gt_heading gt_title gt_font_normal" style="color: #000000; text-align: left; font-weight: bold;">Our predictors</th>
+    </tr>
+    <tr>
+      <th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="color: #000000; text-align: left;">Rolling metrics were chosen over cumulative</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">variable</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;">role</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">opponent_rolling_o_eff</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">opponent_rolling_d_eff</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_true_shooting_percentage</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">opponent_nrtg</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_orb</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">opponent_rolling_drb</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_turnover_percentage</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">opponent_rolling_steal</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">opponent_rolling_block</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_d_eff</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">team_rolling_o_eff</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_true_shooting_percentage</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">team_nrtg</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_orb</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">team_rolling_drb</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_turnover_percentage</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">team_rolling_steal</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">team_rolling_block</td>
+<td class="gt_row gt_left gt_striped">predictor</td></tr>
+    <tr><td class="gt_row gt_left">team_home_away</td>
+<td class="gt_row gt_left">predictor</td></tr>
+    <tr><td class="gt_row gt_left gt_striped">TeamResult</td>
+<td class="gt_row gt_left gt_striped">outcome</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="2"><strong>By:</strong> Jessica Blum</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
+<div id="the-man-and-woman" class="section level1">
+<h1>The Man (and Woman)</h1>
+<div id="what-was-your-human-intervention-approach-how-did-you-collectively-arrive-at-your-decisions" class="section level2">
+<h2>What was your human intervention approach? How did you collectively arrive at your decisions?</h2>
+<p>There was a human element to our approach when placing daily bets. Using a group message, we ran our model each day to see updated moneylines for the games. Based on those numbers, we then looked more into the makeup of each team manually. Various teams were facing injuries, sicknesses, had poor performances the night before that may motivate them the next day, etc. There are a lot of outside factors that can influence a game that NBA statistics will not account for when making a prediction.</p>
+</div>
+</div>
+<div id="the-result" class="section level1">
+<h1>The Result</h1>
+<p>##How did it go? Look at your team on the spreadsheet and look at your wins and losses. What’s your record? What’s your overall finishing position?</p>
+<p>##What did you learn during this? About modeling, about gambling, about yourself.</p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+
