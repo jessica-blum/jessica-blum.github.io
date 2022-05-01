@@ -13,7 +13,9 @@
       <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>http://jessicablum.github.io/2022/04/28/nba-gambling-woes/</guid>
-      <description>## # A tibble: 25 × 4 ## variable type role source ## &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; ## 1 game_id numeric ID original ## 2 game_date date ID original ## 3 team_short_display_name nominal ID original ## 4 opponent_short_display_name nominal ID original ## 5 season numeric ID original ## 6 opponent_rolling_o_eff numeric predictor original ## 7 opponent_rolling_d_eff numeric predictor original ## 8 opponent_rolling_true_shooting_percentage numeric predictor original ## 9 opponent_nrtg numeric predictor original ## 10 opponent_rolling_orb numeric predictor original ## # … with 15 more rows ## # A tibble: 2 × 3 ## .</description>
+      <description>Our sportsbook open and closed around the NBA Playoffs (picture by Sporting News).
+ There comes a time in one’s life that the lure of betting tempts the brain and gives one the feeling of accomplishment or entertainment. For some, that comes with turning of age and seeing others do it. For some, it can be the location of a vacation such as Las Vegas.
+For me, the lure never came.</description>
     </item>
     
     <item>

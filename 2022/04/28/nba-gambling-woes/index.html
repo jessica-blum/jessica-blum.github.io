@@ -22,11 +22,6 @@
 
 
 
-
-<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
-
-
-
 <link rel="stylesheet" href="/css/fonts.css" media="all">
 <link rel="stylesheet" href="/css/main.css" media="all">
 
@@ -62,7 +57,7 @@
 
   <article class="article">
     
-    <span class="article-duration">7 min read</span>
+    <span class="article-duration">8 min read</span>
     
 
     <h1 class="article-title">NBA Gambling Woes</h1>
@@ -75,56 +70,26 @@
       
 
 
-<pre><code>## # A tibble: 25 × 4
-##    variable                                  type    role      source  
-##    &lt;chr&gt;                                     &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   
-##  1 game_id                                   numeric ID        original
-##  2 game_date                                 date    ID        original
-##  3 team_short_display_name                   nominal ID        original
-##  4 opponent_short_display_name               nominal ID        original
-##  5 season                                    numeric ID        original
-##  6 opponent_rolling_o_eff                    numeric predictor original
-##  7 opponent_rolling_d_eff                    numeric predictor original
-##  8 opponent_rolling_true_shooting_percentage numeric predictor original
-##  9 opponent_nrtg                             numeric predictor original
-## 10 opponent_rolling_orb                      numeric predictor original
-## # … with 15 more rows</code></pre>
-<pre><code>## # A tibble: 2 × 3
-##   .metric  .estimator .estimate
-##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.740
-## 2 kap      binary         0.480</code></pre>
-<pre><code>## # A tibble: 2 × 3
-##   .metric  .estimator .estimate
-##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-## 1 accuracy binary         0.732
-## 2 kap      binary         0.465</code></pre>
-<pre><code>## # A tibble: 3 × 7
-##   .pred_W .pred_L .pred_class home_team_displ… home_team_odds_… away_team_displ…
-##     &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;       &lt;chr&gt;                       &lt;int&gt; &lt;chr&gt;           
-## 1   0.614   0.386 W           Toronto Raptors               105 Philadelphia 76…
-## 2   0.146   0.854 L           Utah Jazz                    -110 Dallas Mavericks
-## 3   0.348   0.652 L           New Orleans Pel…              110 Phoenix Suns    
-## # … with 1 more variable: away_team_odds_money_line &lt;int&gt;</code></pre>
 <div class="figure">
-<img src="images/gonzaga.jpg" alt="" />
-<p class="caption">Here is where some chatter about a nice image would go.</p>
+<img src="images/nba-header.jpg" alt="" />
+<p class="caption">Our sportsbook open and closed around the NBA Playoffs (picture by Sporting News).</p>
 </div>
 <p>There comes a time in one’s life that the lure of betting tempts the brain and gives one the feeling of accomplishment or entertainment. For some, that comes with turning of age and seeing others do it. For some, it can be the location of a vacation such as Las Vegas.</p>
 <p>For me, the lure never came. For me, I HAD to start betting because of a class in college.</p>
 <p>Sure, my spring break led me right into the jaws of Downtown Las Vegas, but at that time, I got satisfaction from watching everyone else blow their money as I strolled by without betting a penny. This semester, I have learned and thought about betting more than any other period in my life.</p>
 <p>My class in college was an advanced sports data class. The first half was spent building a model to predict the NCAA March Madness Tournament. Naturally, the second half’s purpose was to build a model to pull in NBA data and tie in moneyline odds.</p>
-<p>I worked with two other people, Brett and Collin, to build a model within a programming language called R. We used a sportsdataverse website and their hoopR package to manipulate up-to-date statistics on NBA teams and predict the outcome. Our professor set the starting wages at $1500. It was up to each group to try to make money long enough to stay afloat during the betting period. Each day had a minimum bet amount based on how many games were being played.</p>
+<p>I worked with two other people, Brett and Collin, to build a model within a programming language called R. We used the sportsdataverse website and their hoopR package to manipulate up-to-date statistics on NBA teams and predict the outcome. We also scraped data from basketball reference each day we went to make a bet, pulling recent information there as well. Our professor set the starting wages at $1500. It was up to each group to try to make money long enough to stay afloat during the betting period. Each day had a minimum bet amount based on how many games were being played.</p>
 <div id="the-machine" class="section level1">
 <h1>The Machine</h1>
-<p>Digging deeper into our logic behind the model, we used a logistic regression model for this project. To us,</p>
+<p>Digging deeper into our logic behind the model, we used a logistic regression model for this project. This model has the quickest results, and from experience, does just as well as a sports vector machine or a random forest model. XGBoost was out of the question for our timing and for the sake of our computers.</p>
+<p>To us, recency in the data and rolling metrics would be the key in helping us to make informed decisions going game-by-game in a series between two teams. In total, we used ten predictors. We chose to implement whether a team would be home or away as a predictor because of the external factors that can usually help a team based on their environment at home. The other nine predictors for both the team and the opponent were offensive/defensive efficiency, true shooting percentage, net rating, offensive/defensive rebounds, turnover percentage, steals and blocks.</p>
 <p>##Explains your method. What did you use as features of your model? What algorithm did you use?</p>
-<div id="woriaenlqv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bikpgfbucs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#woriaenlqv .gt_table {
+#bikpgfbucs .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -149,7 +114,7 @@
   border-left-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_heading {
+#bikpgfbucs .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -161,7 +126,7 @@
   border-right-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_title {
+#bikpgfbucs .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -173,7 +138,7 @@
   border-bottom-width: 0;
 }
 
-#woriaenlqv .gt_subtitle {
+#bikpgfbucs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -185,13 +150,13 @@
   border-top-width: 0;
 }
 
-#woriaenlqv .gt_bottom_border {
+#bikpgfbucs .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_col_headings {
+#bikpgfbucs .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -206,7 +171,7 @@
   border-right-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_col_heading {
+#bikpgfbucs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -226,7 +191,7 @@
   overflow-x: hidden;
 }
 
-#woriaenlqv .gt_column_spanner_outer {
+#bikpgfbucs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -238,15 +203,15 @@
   padding-right: 4px;
 }
 
-#woriaenlqv .gt_column_spanner_outer:first-child {
+#bikpgfbucs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#woriaenlqv .gt_column_spanner_outer:last-child {
+#bikpgfbucs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#woriaenlqv .gt_column_spanner {
+#bikpgfbucs .gt_column_spanner {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -258,7 +223,7 @@
   width: 100%;
 }
 
-#woriaenlqv .gt_group_heading {
+#bikpgfbucs .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -283,7 +248,7 @@
   vertical-align: middle;
 }
 
-#woriaenlqv .gt_empty_group_heading {
+#bikpgfbucs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -298,15 +263,15 @@
   vertical-align: middle;
 }
 
-#woriaenlqv .gt_from_md > :first-child {
+#bikpgfbucs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#woriaenlqv .gt_from_md > :last-child {
+#bikpgfbucs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#woriaenlqv .gt_row {
+#bikpgfbucs .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -325,7 +290,7 @@
   overflow-x: hidden;
 }
 
-#woriaenlqv .gt_stub {
+#bikpgfbucs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -338,7 +303,7 @@
   padding-right: 5px;
 }
 
-#woriaenlqv .gt_stub_row_group {
+#bikpgfbucs .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -352,11 +317,11 @@
   vertical-align: top;
 }
 
-#woriaenlqv .gt_row_group_first td {
+#bikpgfbucs .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#woriaenlqv .gt_summary_row {
+#bikpgfbucs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -366,16 +331,16 @@
   padding-right: 5px;
 }
 
-#woriaenlqv .gt_first_summary_row {
+#bikpgfbucs .gt_first_summary_row {
   border-top-style: none;
   border-top-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_first_summary_row.thick {
+#bikpgfbucs .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#woriaenlqv .gt_last_summary_row {
+#bikpgfbucs .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -385,7 +350,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_grand_summary_row {
+#bikpgfbucs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -395,7 +360,7 @@
   padding-right: 5px;
 }
 
-#woriaenlqv .gt_first_grand_summary_row {
+#bikpgfbucs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -405,11 +370,11 @@
   border-top-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_striped {
+#bikpgfbucs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#woriaenlqv .gt_table_body {
+#bikpgfbucs .gt_table_body {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -418,7 +383,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_footnotes {
+#bikpgfbucs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -432,7 +397,7 @@
   border-right-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_footnote {
+#bikpgfbucs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -441,7 +406,7 @@
   padding-right: 5px;
 }
 
-#woriaenlqv .gt_sourcenotes {
+#bikpgfbucs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -455,7 +420,7 @@
   border-right-color: #D3D3D3;
 }
 
-#woriaenlqv .gt_sourcenote {
+#bikpgfbucs .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -463,60 +428,60 @@
   padding-right: 5px;
 }
 
-#woriaenlqv .gt_left {
+#bikpgfbucs .gt_left {
   text-align: left;
 }
 
-#woriaenlqv .gt_center {
+#bikpgfbucs .gt_center {
   text-align: center;
 }
 
-#woriaenlqv .gt_right {
+#bikpgfbucs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#woriaenlqv .gt_font_normal {
+#bikpgfbucs .gt_font_normal {
   font-weight: normal;
 }
 
-#woriaenlqv .gt_font_bold {
+#bikpgfbucs .gt_font_bold {
   font-weight: bold;
 }
 
-#woriaenlqv .gt_font_italic {
+#bikpgfbucs .gt_font_italic {
   font-style: italic;
 }
 
-#woriaenlqv .gt_super {
+#bikpgfbucs .gt_super {
   font-size: 65%;
 }
 
-#woriaenlqv .gt_footnote_marks {
+#bikpgfbucs .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#woriaenlqv .gt_asterisk {
+#bikpgfbucs .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#woriaenlqv .gt_slash_mark {
+#bikpgfbucs .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#woriaenlqv .gt_fraction_numerator {
+#bikpgfbucs .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#woriaenlqv .gt_fraction_denominator {
+#bikpgfbucs .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -587,12 +552,20 @@
   
 </table>
 </div>
+<p>These are the metrics we chose to believe made up a team. Our accuracy when testing it out on training and testing data got us to around 74 percent. We were correctly predicting about every 3 out of 4 games. That was an exciting benchmark when going into a period where we were trying to make money.</p>
+<p>There was a challenge for us to outpace previous class’s that lost their money and struggled to stay afloat. We are proud to announce that we stayed well above the water’s surface, making money in the end.</p>
 </div>
 <div id="the-man-and-woman" class="section level1">
 <h1>The Man (and Woman)</h1>
 <div id="what-was-your-human-intervention-approach-how-did-you-collectively-arrive-at-your-decisions" class="section level2">
 <h2>What was your human intervention approach? How did you collectively arrive at your decisions?</h2>
-<p>There was a human element to our approach when placing daily bets. Using a group message, we ran our model each day to see updated moneylines for the games. Based on those numbers, we then looked more into the makeup of each team manually. Various teams were facing injuries, sicknesses, had poor performances the night before that may motivate them the next day, etc. There are a lot of outside factors that can influence a game that NBA statistics will not account for when making a prediction.</p>
+<p>There was a human element to our approach when placing daily bets. Using a group message, we ran our model each day to see updated moneylines for the games.</p>
+<div class="figure">
+<img src="images/moneyline-text.png" alt="" />
+<p class="caption">This is an example of our texts to one another after running our model for the day, attempting to make picks.</p>
+</div>
+<p>Based on those numbers, we then looked more into the makeup of each team manually. Various teams were facing injuries, sicknesses or had poor performances the night before that may motivate them the next day, etc. There are a lot of outside factors that can influence a game that NBA statistics will not account for when making a prediction.</p>
+<p>In order, we trusted our model then looked to disprove it with facts our model was not accounting for.</p>
 </div>
 </div>
 <div id="the-result" class="section level1">
@@ -622,18 +595,6 @@
 
     </div>
     
-
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
-<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
-
-
 
     
 <script src="/js/math-code.js"></script>
